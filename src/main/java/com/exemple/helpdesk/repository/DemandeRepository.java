@@ -1,0 +1,35 @@
+package com.exemple.helpdesk.repository;
+
+import com.exemple.helpdesk.models.User;
+import com.exemple.helpdesk.models.Demande;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface DemandeRepository extends JpaRepository<Demande,Long>{
+      /* @Query("select dem from demande dem  where dem.id = :x")
+    public List<Demande> find_id_employer(@Param("x") Long id);
+    @Query("select dem from User dem  where dem.id = :x")
+    public List<User> find_ide(@Param("x") Long id);
+    @Query("select id  from demande dem where dem.id_demande = :x ")
+    public Long findAlla(@Param("x") Long id_demande);*/
+
+
+    /*@Query("select new com.exemple.helpdesk.models.Listedemande (u.prenom,u.username) from demande dem join User u")
+    public List<Listedemande> getinformation();*/
+
+    @Query("select dem from Demande dem  where user.id = :x")
+    List<Demande> find_id_employer(@Param("x") Long id);
+
+    @Query("select dem from Demande dem  where user.username like :x")
+    public Page<Demande> chercher(@Param("x")String mc, Pageable pageable);
+
+
+
+
+
+}
