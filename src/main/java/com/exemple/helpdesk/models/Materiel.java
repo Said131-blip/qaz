@@ -1,9 +1,19 @@
 package com.exemple.helpdesk.models;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.Serializable;
+import javax.persistence.*;
 @Entity
+@Getter
+@Setter
+
+@AllArgsConstructor
 public class Materiel  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +27,13 @@ public class Materiel  implements Serializable {
     private  String serial;
 
     private  String comment;
+    /*@ManyToOne*/
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idm")
+
+
+    @JsonIgnore
+    private Demande demande;
 
     public Long getId_materiel() {
         return id_materiel;
