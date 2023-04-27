@@ -26,9 +26,9 @@ public interface DemandeRepository extends JpaRepository<Demande,Long>{
     List<Demande> find_id_employer(@Param("x") Long id);
 
     @Query("select dem from Demande dem  where user.username like :x")
-    public Page<Demande> chercher(@Param("x")String mc, Pageable pageable);
-
-
+    public List<Demande> chercher(@Param("x")String mc);
+    @Query("select dem from Demande dem  where status like :x")
+    public List<Demande> cherchers(@Param("x")String st);
 
 
 

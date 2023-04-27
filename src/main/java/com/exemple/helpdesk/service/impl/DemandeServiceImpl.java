@@ -7,9 +7,12 @@ import com.exemple.helpdesk.models.User;
 import com.exemple.helpdesk.repository.DemandeRepository;
 import com.exemple.helpdesk.repository.UserRepository;
 import com.exemple.helpdesk.service.DemandeService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 @Service
 public class DemandeServiceImpl implements DemandeService {
@@ -23,15 +26,20 @@ public class DemandeServiceImpl implements DemandeService {
         User user = userRepository.findByUsername(authentication.getName()).get();
         Demande demande = new Demande();
         demande.setDate(model.getDate());
-        demande.setStatus("En cours");
+        demande.setStatus("Waiting");
         demande.setAllocation_motive(model.getAllocation_motive());
         demande.setUser(user);
-        Materiel materiel=new Materiel();
-        materiel.setEquipement(model.getEquipement());
+        List<Materiel> materiel  ;
+        /*demande.setMateriel(model.getMateriel());*/
+
+       /* materiel.setEquipement(model.getEquipement());
         materiel.setModel(model.getModel());
         materiel.setSerial(model.getSerial());
-        materiel.setComment(model.getComment());
-        demande.setMateriel( materiel);
+        materiel.setComment(model.getComment());*/
+
+        demande.setMateriel(model.getMateriel());
+        System.out.println(model.getMateriel());
+     /*  demande.setMateriels((List<Materiel>) materiel);*/
         /* Materiel materiel= new Materiel();
         demande.setMateriel((Set<Materiel>) materiel);*/
 

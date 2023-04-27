@@ -1,12 +1,13 @@
 package com.exemple.helpdesk.Pojo;
 
+import com.exemple.helpdesk.models.Materiel;
 import com.exemple.helpdesk.models.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-import java.util.Date;
+import java.util.*;
 
 @Getter
 @Setter
@@ -16,12 +17,18 @@ public class DemandePojo {
 
     private String Allocation_motive ;
 
+
     private String status;
-    private  String equipement;
+    /*private List<Materiel> materiel;*/
+
+   /* private  String equipement;
 
     private  String model;
 
     private  String serial;
 
-    private  String comment;
+
+    private  String comment;*/
+   List<Materiel> materiel;
+
 }

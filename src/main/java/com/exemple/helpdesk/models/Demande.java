@@ -1,5 +1,6 @@
 package com.exemple.helpdesk.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Demande implements Serializable {
+public class Demande  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +32,15 @@ public class Demande implements Serializable {
     private String Allocation_motive ;
     // @Column(name = "status")
     private String status;
-    @ManyToOne(targetEntity = Materiel.class,cascade = CascadeType.ALL)
+    /*@ManyToOne(targetEntity = Materiel.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "cc",referencedColumnName = "id_materiel")
-    private Materiel materiel;
+    private  List<Materiel>  materiel;*/
+
+
+    @OneToMany(targetEntity = Materiel.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "idm",referencedColumnName = "id_demande")
+    @JsonBackReference
+    private List<Materiel> materiel;
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
