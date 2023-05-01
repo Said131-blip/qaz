@@ -22,25 +22,23 @@ public class Demande  implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_demande;
-
-
     @Column(name = "date")
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
-    // @Column(name = "Allocation_motive")
     private String Allocation_motive ;
-    // @Column(name = "status")
     private String status;
-    /*@ManyToOne(targetEntity = Materiel.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "cc",referencedColumnName = "id_materiel")
-    private  List<Materiel>  materiel;*/
-
-
     @OneToMany(targetEntity = Materiel.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "idm",referencedColumnName = "id_demande")
     @JsonBackReference
     private List<Materiel> materiel;
+
+
+
+
+
+
+
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
