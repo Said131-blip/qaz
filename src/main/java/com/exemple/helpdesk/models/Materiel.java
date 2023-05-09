@@ -31,8 +31,8 @@ public class Materiel  implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idm")
 
+@JsonIgnore
 
-    @JsonIgnore
     private Demande demande;
 
     public Long getId_materiel() {

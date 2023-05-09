@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/countClosed").permitAll()
 				.antMatchers("/countCours").permitAll()
 				.antMatchers("/cherchers").permitAll()
-
+				.antMatchers("/chercherrole").permitAll()
 
 
 				.antMatchers("/addDemande").permitAll()
@@ -101,6 +101,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/v3/api-docs").permitAll()
 				.antMatchers("/materiel/{id_demande}").permitAll()
 
+
+				.antMatchers("/addDemandeRetour").permitAll()
+				.antMatchers("/demaneRetour/{id_demandeRetour}").permitAll()
+				.antMatchers("/addDemandeTelework").permitAll()
+				.antMatchers("/demaneTelework/{id_demandeTelework}").permitAll()
+				.antMatchers("/updateDemandeTelework/{id_demandeTelework}").permitAll()
+
+				.antMatchers("/addDemandeChange").permitAll()
+				.antMatchers("/demaneChange/{id_demandeChange}").permitAll()
+				.antMatchers("/updateDemandeChange/{id_demandeChange}").permitAll()
 
 				.anyRequest().authenticated();
 

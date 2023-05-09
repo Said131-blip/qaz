@@ -20,4 +20,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query("select emp from User emp  where emp.username like :x")
 	public List<User> find_by_nom_utilisateur(@Param("x")String username);
+
 }

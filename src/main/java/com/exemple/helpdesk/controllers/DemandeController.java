@@ -2,7 +2,9 @@ package com.exemple.helpdesk.controllers;
 
 import com.exemple.helpdesk.Pojo.DemandePojo;
 import com.exemple.helpdesk.models.Demande;
+import com.exemple.helpdesk.models.User;
 import com.exemple.helpdesk.repository.DemandeRepository;
+import com.exemple.helpdesk.repository.UserRepository;
 import com.exemple.helpdesk.service.DemandeService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +29,8 @@ public class DemandeController {
 
     @Autowired
     private DemandeService demandeService;
-
+    @Autowired
+    private UserRepository userRepository;
 
 
 
@@ -40,19 +43,6 @@ public class DemandeController {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -148,9 +138,13 @@ if(mc!=null){
         return de;
     }
 
-    @RequestMapping(value="/updateDemande/{id_demande}",method=RequestMethod.PUT)
-    public Demande updateDemande(@PathVariable Long id_demande, @RequestBody Demande c){
+    @RequestMapping(value="/updateDemande/{id_demande}",method=RequestMethod.PATCH)
+    public Demande updateDemande(@PathVariable Long id_demande, @RequestBody Demande c,Authentication authentication){
+        User user = userRepository.findByUsername(authentication.getName()).get();
+        c.setUser(user);
+        c.setStatus("Waiting");
         c.setId_demande(id_demande);
+
         return demanderepositor.save(c);
     }
 

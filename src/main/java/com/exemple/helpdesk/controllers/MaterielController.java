@@ -2,6 +2,7 @@ package com.exemple.helpdesk.controllers;
 
 import com.exemple.helpdesk.models.Materiel;
 import com.exemple.helpdesk.repository.MaterielRepository;
+import com.exemple.helpdesk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 public class MaterielController {
     @Autowired
     private MaterielRepository materielrepositor;
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value="/material",method= RequestMethod.GET)
     public List<Materiel> getMateriels(){
